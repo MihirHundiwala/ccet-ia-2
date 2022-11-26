@@ -1,4 +1,4 @@
-name: Build and Push image to Amazon ECR
+name: Deploy docker container to EKS
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build and Push Image to Amazon ECR
+    name: Deploy docker container to EKS
     runs-on: ubuntu-latest
 
     steps:
@@ -47,5 +47,6 @@ jobs:
 
       - name: Deploy image to Amazon EKS
         run: |
+          kubectl apply -f eks/aws-auth.yaml
           kubectl apply -f eks/deployment.yaml
           kubectl apply -f eks/service.yaml
