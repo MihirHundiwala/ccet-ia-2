@@ -44,6 +44,5 @@ jobs:
 
       - name: Deploy image to Amazon EKS
         run: |
-          aws sts get-caller-identity
           kubectl get svc
 

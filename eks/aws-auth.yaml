@@ -9,3 +9,7 @@ data:
       username: github-actions
       groups:
         - system: masters
+  mapRoles: |
+    - rolearn: arn:aws:iam::186911657558:role/AWSEKSClusterRole
+      username: AWSEKSFullAccess
+      - system: masters
