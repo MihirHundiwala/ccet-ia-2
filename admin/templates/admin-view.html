@@ -1,0 +1,66 @@
+{% extends 'layout.html' %} {% block styling %}
+
+<!-- Custom css -->
+<link rel="stylesheet" href="{{url_for('Admin.static',filename='./css/admin-view.css')}}">
+
+<title>{% block title %} Admin Page {% endblock %}</title>
+
+{% endblock %} {% block content %}
+
+<div class=" container-fluid row">
+    <div id="cmts-aprov" class="col-md-4">
+
+        <ul>
+            {% if comments==None %}
+            <h5>No Comments to be approved</h5>
+            {% else %}
+            <h5>Comments to be approved</h5>
+            {% for storyid,data in comments.items() %}{% for commentid,commentdata in data.items() %}
+            <li class="card">
+                <div class="card-block cmt-info row">
+                    <div class="col-md-9">
+                        <strong>{{commentdata['Nickname']}}</strong>
+                        <strong>{{commentdata['UID']}}</strong>
+                        <strong>{{storyid}}</strong>
+                        <br> {{commentdata['Comment-Body']}}
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-sm btn-outline accept" onclick="approvecomment(this,'{{storyid}}', '{{commentid}}')"><i class="fa fa-check"></i></button>
+                        <br>
+                        <br>
+                        <button class="btn btn-sm btn-dark reject" onclick="disapprovecomment(this,'{{storyid}}','{{commentid}}')"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </li>{% endfor %}{% endfor %}{% endif %}
+        </ul>
+    </div>
+    <div id="str-apprv" class="col-md-8">
+        <ul>
+            {% if stories==None %}
+            <h5>No Stories to be approved</h5>
+            {% else %}
+            <h5>Stories to be approved</h5>
+            {% for storyid,data in stories.items() %}
+            <li class="card">
+                <div class="card-block str-info">
+
+                    <strong>{{data['Title']}}</strong>
+                    <br>
+                    <p>{{data['Body']}}</p>
+
+                    <button class="btn btn-sm btn-outline accept-s" id="{{storyid}}" onclick="approvestory(this)"><i class="fa fa-check"></i></button>
+
+                    <button class="btn btn-sm btn-dark reject-s" id="{{storyid}}" onclick="disapprovestory(this)"><i class="fa fa-times"></i></button>
+
+                </div>
+            </li>{% endfor %}{% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %} {% block plugins %}
+
+<!-- Plugins -->
+<script src="{{url_for('Admin.static', filename='js/admin.js')}}"></script>
+
+{% endblock %}

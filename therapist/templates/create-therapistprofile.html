@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='./css/bootstrap.min.css')}}">
+
+    <!-- Day Selector -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='./css/timepicker.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='./css/createprofile.css')}}">
+
+    <title>Create Profile</title>
+</head>
+
+<body>
+
+    {% if msg != None %}
+    <div class="alert alert-success">
+        <strong>{{msg}}</strong>
+    </div>{% else %} {% endif %}
+
+    <div class="container">
+
+        <header>
+            <h1>Join us</h1>
+            <p>Complete your profile to get started..</p>
+        </header>
+
+        <form method="POST">
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="firstname">First Name: </label>
+                        <input type="text" class="form-control" placeholder="" id="firstname" name="firstname" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="lastname">Last Name: </label>
+                        <input type="text" class="form-control" placeholder="" id="lastname" name="lastname" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth: </label>
+                        <input type="date" class="form-control" id="dob" name="dob" min="1900-01-01" max="2100-12-31" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="gender">Gender: </label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="" selected disabled hidden>Select one</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="pref-days">Prefered Days: </label>
+                        <select class="form-control" id="days" name="days" placeholder="select upto 7 days" multiple="multiple">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="pref-time">Prefered Time(for each day) From: </label>
+                        <input type="text" class="form-control timepicker" id="start-pref" name="start-pref" required>
+                        <label for="pref-time">To</label>
+                        <input type="text" class="form-control timepicker" id="end-pref" name="end-pref" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="Qualification">Highest Qualification: </label>
+
+                        <select class="form-control" id="Qualification" name="qualification">
+                            <option value="Master's in Psychology">Master's in Psychology</option>
+                            <option value="M.Phil Psychology">M.Phil Psychology</option>
+                            <option value="Ph.D/Psy.D in Psychology">Ph.D/Psy.D in Psychology</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="firstname">Degree from Which College/Institute: </label>
+                        <input type="text" class="form-control" id="Degree-college" name="degree-college" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="Experince">Years of Experience: </label>
+                        <input type="number" class="form-control" id="Experience" name="experience" min="1" pattern="[0-9][0-9]?" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="Mobile">Mobile Number: </label>
+                        <input type="tel" class="form-control" id="Mobile" name="mobile" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <input type="reset" class="btn btn-outline-dark" value="Reset">
+                <input type="submit" class="btn btn-outline-success" value="Submit">
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static',filename='./js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static',filename='./js/timepicker.min.js')}}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('input.timepicker').timepicker({
+                timeFormat: 'h:i A',
+                interval: 60,
+                minTime: '9:00 AM',
+                maxTime: '9:00 PM',
+                scrollbar: true,
+                rebuild: true
+            });
+            var multipleCancelButton = new Choices('#days', {
+                removeItemButton: true,
+                maxItemCount: 7,
+                searchResultLimit: 7,
+                renderChoiceLimit: 7
+            });
+        });
+    </script>
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
+</body>
+
+</html>

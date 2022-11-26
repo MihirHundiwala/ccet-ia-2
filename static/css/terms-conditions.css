@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+    background-image: linear-gradient(145deg, #00b4c6 0%, #0088e8 100%);
+}
+
+section {
+    padding: 30px 50px;
+    font-size: 15px;
+    border-top: #eee solid 1px;
+    text-align: justify;
+}
+
+section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+section>.container>ul {
+    list-style: square;
+}
+
+section li::marker {
+    color: #0088e8;
+}
+
+#rescheduling-terms {
+    margin-top: -25px;
+    padding-top: 25px;
+}
+
+#note {
+    padding: 0 50px 50px;
+    border-top: none;
+}
+
+#note h4 {
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+#note p {
+    margin: 0;
+}
+
+@media (min-width: 1600px) {
+    .container {
+        max-width: 85%;
+    }
+    section {
+        padding: 40px 0px;
+    }
+}
+
+@media (max-width:992px) {
+    section {
+        padding: 40px 10px;
+    }
+}
+
+@media (max-width:576px) {
+    section {
+        padding: 40px 30px;
+    }
+}

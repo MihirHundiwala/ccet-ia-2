@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+body {
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: #cdcdcd;
+}
+
+.moto-container {
+    background-image: url("../images/about-banner.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100vh;
+    margin-top: 55px;
+}
+
+.moto-row {
+    margin: 0 auto;
+    width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.moto-text {
+    padding-left: 30px;
+}
+
+.moto-text h2 {
+    font-size: 50px;
+    font-family: 'Satisfy', cursive;
+    margin: 0;
+    font-weight: 100;
+}
+
+.tagline {
+    font-size: 40px;
+    font-family: 'Zen Loop';
+    font-weight: 600;
+}
+
+.moto-img {
+    text-align: center;
+}
+
+.moto-img img {
+    width: 90%;
+}
+
+.founder-container {}
+
+.founder-banner {
+    width: 30%;
+    position: absolute;
+    margin-top: -120px;
+}
+
+.founder-row,
+.therapist-row {
+    width: 85vw;
+    margin: 0 auto;
+}
+
+.founder-heading {
+    text-align: center;
+    font-family: 'Satisfy', cursive;
+    margin-bottom: 40px;
+}
+
+.founder-heading br {
+    display: none;
+}
+
+.founder-img {
+    width: 100%;
+}
+
+.founder-name {
+    text-align: center;
+    font-size: 23px;
+    font-family: 'Open Sans';
+}
+
+.founder-quote {
+    text-align: center;
+    font-family: 'Satisfy', cursive;
+    margin-top: 70px;
+    font-size: 30px;
+}
+
+.founder-text {
+    margin: 60px auto;
+    padding: 0 45px;
+}
+
+.founder-subheading,
+.therapist-subheading {
+    text-align: center;
+    font-family: 'Satisfy';
+    margin-bottom: 25px;
+}
+
+.founder-text p,
+.therapist-row p {
+    font-family: 'Open Sans';
+    font-size: 17px;
+    text-align: justify;
+}
+
+.therapist-row {
+    padding: 0 30px;
+}
+
+.therapist-container {
+    margin-bottom: 60px;
+}
+
+.therapist-img-div {
+    text-align: center;
+}
+
+.therapist-img {
+    width: 85%;
+}
+
+.therapist-subheading {
+    text-align: left;
+}
+
+.site-footer {
+    background-color: #2f4353;
+    background-image: linear-gradient(315deg, #2f4353 0%, #d2ccc4 85%);
+}
+
+.site-footer .social-icons a {
+    color: #596670;
+}
+
+@media (min-width:1200px) {
+    .moto-row {
+        top: 65%;
+    }
+}
+
+@media (max-width:1199px) {
+    .image-cols {
+        padding: 0;
+    }
+}
+
+@media (max-width:991px) {
+    .founder-row,
+    .therapist-row {
+        width: 90vw;
+    }
+    .founder-quote-col {
+        padding: 0 45px;
+    }
+    .founder-quote br {
+        display: none;
+    }
+    .therapist-img {
+        width: 100%;
+    }
+}
+
+@media (max-width:767px) {
+    .moto-img {
+        margin: 50px 0;
+    }
+    .moto-img img {
+        width: 75%;
+    }
+    .moto-text h2 {
+        font-size: 40px;
+    }
+    .tagline {
+        font-size: 30px;
+    }
+    .image-cols {
+        padding: 10px 30px;
+    }
+}
+
+@media (max-width:576px) {
+    .moto-row {
+        top: 45%;
+    }
+    .moto-img {
+        margin: 40px 0;
+    }
+    .moto-img img {
+        width: 95%;
+    }
+    .moto-text h2 {
+        font-size: 35px;
+    }
+    .tagline {
+        font-size: 28px;
+    }
+    .founder-row,
+    .therapist-row {
+        width: 100%;
+    }
+    .founder-banner {
+        width: 60%;
+        position: absolute;
+        margin-top: -170px;
+        left: -15px;
+    }
+    .founder-heading {
+        margin-bottom: 15px;
+    }
+    .founder-heading br {
+        display: block;
+    }
+    .image-cols {
+        padding: 10px 30px;
+    }
+    .founder-quote-col,
+    .founder-text {
+        padding: 0 20px;
+    }
+    .founder-text {
+        margin-bottom: 20px !important;
+    }
+    .therapist-row {
+        padding: 0 5px;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5b6872;
+}

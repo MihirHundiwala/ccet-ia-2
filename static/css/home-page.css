@@ -1,0 +1,531 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
+
+/*-------------------- Custom Text Selection --------------------*/
+
+::selection {
+    background: #ff589e;
+    color: rgb(255, 255, 255) !important;
+}
+
+::-moz-selection {
+    background: #ff589e;
+    color: rgb(255, 255, 255) !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.hidden-brs {
+    display: none;
+}
+
+
+/*-------------------- Main Page Buttons --------------------*/
+
+a.main-button {
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 12px 20px;
+    background-color: #00b4c6;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.25px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+a.main-button:hover {
+    background-color: #0088e8;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+/*-------------------- Welcome --------------------*/
+
+#welcome {
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../images/banner-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 130vh;
+    margin-top: -15vh;
+}
+
+.welcome-area-row {
+    margin: 0 auto;
+    width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-col,
+.image-col {
+    padding: 0;
+}
+
+.text-col {
+    padding-left: 50px;
+}
+
+.image-col img {
+    width: 100%;
+}
+
+.text-col h2 {
+    font-size: 50px;
+    color: #fff;
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    font-weight: 100;
+}
+
+.text-col>h2>span {
+    font-family: 'Satisfy', cursive;
+}
+
+.tagline {
+    font-size: 40px;
+    color: #fff;
+    font-family: 'Zen Loop', cursive;
+    margin: -5px 0 10px 50px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.know-more {
+    background-color: #fc5296;
+    background-image: linear-gradient(315deg, #fc5296 0%, #f67062 74%);
+}
+
+.know-more:hover {
+    background-image: none;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+#hidden-div {
+    position: absolute;
+    bottom: 10vh;
+}
+
+
+/*-------------------- About Us --------------------*/
+
+#about-us {
+    padding-top: 70px;
+    margin-top: -30px;
+}
+
+#about-us p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 25px;
+    text-align: justify;
+}
+
+.about-div {
+    text-align: center;
+    padding: 0 80px;
+}
+
+#about-us h2:after {
+    content: "";
+    display: block;
+    background-image: linear-gradient(145deg, #00b4c6 0%, #0088e8 100%);
+    width: 70px;
+    height: 3px;
+    margin: 10px auto 30px;
+}
+
+
+/*-------------------- Image Box --------------------*/
+
+.image-box {
+    width: 75vw;
+    padding: 3px;
+    margin: 60px auto;
+    border: rgb(220 220 220 / 20%) solid 2px;
+    box-shadow: 4px 4px 8px 0px rgb(220 220 220);
+}
+
+.image-box .row {
+    margin: 0;
+}
+
+.img-cols {
+    padding: 0;
+}
+
+.image-box .img-divs {
+    margin: 3px;
+    overflow: hidden;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s, filter 0.8s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(70%);
+    overflow: hidden;
+}
+
+.image-box img:hover {
+    filter: brightness(100%);
+    transform: scale(1.1);
+    overflow: hidden;
+}
+
+.image-box .image-text {
+    position: absolute;
+    width: auto;
+    background-color: #00000025;
+    z-index: 2;
+    height: auto;
+    bottom: 20px;
+    margin-left: 20px;
+}
+
+.image-box .image-text br {
+    display: none;
+}
+
+.image-box .image-text p {
+    font-size: 23px;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    margin: 0;
+}
+
+
+/*-------------------- Other Sections --------------------*/
+
+#stories,
+#therapy,
+#facts {
+    padding: 70px 0px;
+    border-top: #eee solid 1px;
+}
+
+#stories h5,
+#therapy h5,
+#facts h5 {
+    font-family: 'Merriweather', serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: #1e1e1e;
+    line-height: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+#stories p,
+#therapy p,
+#facts p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 25px;
+    text-align: justify;
+}
+
+.pricing-table {
+    font-family: 'Open Sans';
+}
+
+.pricing-table thead th {
+    border-bottom: none;
+}
+
+
+/*-------------------- Preloader --------------------*/
+
+#preloader {
+    overflow: hidden;
+    background-image: linear-gradient(145deg, #00b4c6 0%, #0088e8 100%);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 9999;
+    color: #fff;
+}
+
+#preloader .jumper {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+}
+
+#preloader .jumper>div {
+    background-color: #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: jumper 1s 0s linear infinite;
+    animation: jumper 1s 0s linear infinite;
+}
+
+#preloader .jumper>div:nth-child(2) {
+    -webkit-animation-delay: 0.33333s;
+    animation-delay: 0.33333s;
+}
+
+#preloader .jumper>div:nth-child(3) {
+    -webkit-animation-delay: 0.66666s;
+    animation-delay: 0.66666s;
+}
+
+@-webkit-keyframes jumper {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes jumper {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/*-------------------- Fade in / Sliders --------------------*/
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 250ms ease-in;
+}
+
+.fade-in.appear {
+    opacity: 1;
+}
+
+.from-left {
+    transform: translate(-5%);
+}
+
+.from-right {
+    transform: translate(5%);
+}
+
+.from-left,
+.from-right {
+    opacity: 0;
+    transition: opacity 600ms ease-in, transform 600ms ease-in;
+}
+
+.from-left.appear,
+.from-right.appear {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width:1199px) {
+    .about-div {
+        padding: 0 60px;
+    }
+    .hidden-brs {
+        display: block;
+    }
+    .image-box {
+        width: 80vw;
+    }
+    .image-box .image-text p {
+        font-size: 20px;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width:991px) {
+    .text-col {
+        padding: 0;
+    }
+    .tagline {
+        text-align: end;
+    }
+    .image-col {
+        display: none;
+    }
+    .about-div {
+        padding: 0 40px;
+    }
+    .section-cols {
+        padding: 30px 10px 0 !important;
+    }
+    .image-box .image-text p .hidden-brs {
+        display: block;
+    }
+    .image-box .image-text {
+        bottom: 12px;
+        margin-left: 12px;
+    }
+    .image-box .image-text p {
+        font-size: 18px;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width:767px) {
+    .about-div {
+        padding: 0 10px;
+    }
+    .image-box {
+        width: 92vw;
+        padding: 0.5px;
+    }
+    .text-col h2 {
+        font-size: 42px;
+    }
+    .tagline {
+        font-size: 28px;
+        text-align: center;
+    }
+    .text-col a {
+        font-size: 10px;
+    }
+    .welcome-text {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width:576px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+    #welcome {
+        height: 100vh;
+        margin: 0;
+        padding-top: 30vh;
+        background-position-x: -10vw;
+    }
+    .welcome-text {
+        font-size: 14px;
+        margin: 30px 0 40px;
+    }
+    .welcome-text .hidden-brs {
+        display: none;
+    }
+    .text-col {
+        padding: 0 20px;
+    }
+    .text-col h2 {
+        font-size: 40px;
+        text-align: center;
+    }
+    .text-col a {
+        font-size: 12px;
+    }
+    .text-col span {
+        display: block;
+        margin-top: 12px;
+        font-size: 45px;
+    }
+    .tagline {
+        font-size: 24px;
+        text-align: center;
+        margin: 0;
+        margin-top: 15px !important;
+    }
+    .about-div {
+        padding: 0 30px;
+    }
+    .image-box .img-divs {
+        margin: 1px;
+    }
+    .image-box .image-text {
+        bottom: 8px;
+        margin-left: 8px;
+    }
+    .image-box .image-text p {
+        font-size: 13px;
+        padding: 2px 5px;
+    }
+    .section-cols {
+        padding: 30px 30px 0 !important;
+    }
+    #stories h5,
+    #therapy h5,
+    #facts h5,
+    #about-us h2 {
+        font-size: 22px;
+        line-height: normal;
+        margin-bottom: 25px;
+    }
+    #stories p,
+    #therapy p,
+    #facts p,
+    #about-us p {
+        margin-bottom: 14px !important;
+        font-size: 16px !important;
+        line-height: 23px !important;
+    }
+    #about-us h2:after {
+        width: 50px;
+        height: 2px;
+        margin: 5px auto 20px;
+    }
+    .priceitems span {
+        display: none;
+    }
+    .priceitems {
+        padding: .75rem .5rem !important;
+        text-align: center;
+    }
+}

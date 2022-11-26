@@ -1,0 +1,67 @@
+{% extends 'layout.html' %} {% block styling %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='./css/about-us.css')}}"> {% endblock %}
+
+<title>{% block title %} About Us {% endblock %}</title>
+
+{% block content %}
+
+<div class="container-fluid moto-container">
+    <div class="row moto-row flex-column-reverse flex-md-row align-items-center">
+        <div class="col-12 col-md-6 moto-text">
+            <h2>Our Vision</h2>
+            <p class="tagline">"No teen should feel alone or left out in troubled times."</p>
+        </div>
+        <div class="col-12 col-md-6 moto-img">
+            <img src="{{url_for('static',filename='images/motto.png')}}">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid founder-container">
+    <img class="founder-banner" src="{{url_for('static',filename='images/branch.png')}}" alt="">
+    <h1 class="founder-heading">The Founding <br> Pillars</h1>
+
+    <div class="row founder-row justify-content-center">
+        <div class="image-cols col-12 col-md-4">
+            <img class="founder-img" src="{{url_for('static',filename='images/Prachi.png')}}">
+            <h5 class="founder-name">Prachi Randeria</h5>
+        </div>
+        <div class="image-cols col-12 col-md-4">
+            <img class="founder-img" src="{{url_for('static',filename='images/Ansh.png')}}">
+            <h5 class="founder-name">Ansh Dagha</h5>
+        </div>
+        <div class="image-cols col-12 col-md-4">
+            <img class="founder-img" src="{{url_for('static',filename='images/Mihir.png')}}">
+            <h5 class="founder-name">Mihir Hundiwala</h5>
+        </div>
+        <div class="col-12 founder-quote-col">
+            <h2 class="founder-quote">"We believe that our community will prosper only when our youth <br> is healthy, physically as well as mentally."</h2>
+        </div>
+        <div class="col-12 founder-text">
+            <h1 class="founder-subheading">Who are we?</h1>
+            <p>T-Space is a team of 3 young and courageous students who are passionate about mental health issues. We aim to encourage and promote mental health and psychological well-being while protecting the privacy of our users. We provide various methods
+                to talk about your experiences which include a censored and kind section where you can write it down and a professional platform where you can talk with experts via audio or video chat. We welcome all students with open arms to use our
+                platform, get help wherever needed and emerge healthy. So take a deep breath, pick a cool nickname and get started...
+            </p>
+            <p>P.S. We value your privacy and your wish to keep your identity hidden. You will only be known by your nickname and no personal data will be shared with anyone else, not even your therapist.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid therapist-container">
+    <div class="therapist-row row justify-content-around align-items-center">
+        <div class="col-12 col-md-5 col-xl-4 therapist-img-div">
+            <img class="therapist-img" src="{{url_for('static',filename='images/Shrirang.png')}}">
+        </div>
+        <div class="col-12 col-md-7 col-xl-8">
+            <h1 class="therapist-subheading">Our Therapist</h1>
+            <p><strong>Dr. Shrirang Joshi</strong> has been practising as a Psychiatrist for the past 30 years. He completed his MBBS and DPM from Grant Medical College, Mumbai and has worked at various reputed institutions like MGM Hospital, Kamothe, Navi
+                Mumbai and Dongri children’s home. He has rich experience of counselling children and teenager and has also been Hon. Member of Juvenile Justice Board of Thane district for 3 years. Currently, he is working as a counselor for Somaiya group
+                of colleges.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block plugins %} {% endblock %}

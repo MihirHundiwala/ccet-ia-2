@@ -1,0 +1,118 @@
+{% extends 'layout.html' %} {% block styling %}
+<link rel="stylesheet" href="{{url_for('Facts.static',filename='./css/facts.css')}}"> {% endblock %} {% block title %} Health Facts {% endblock %} {% block content %}
+
+<div class="container main-container">
+
+    <h2>Health Blogs</h2>
+
+    <div class="row">
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="blogs">
+                <img class="blog-img" src="{{url_for('Facts.static',filename='./images/anxiety.jpg')}}" />
+                <div class="card-body">
+                    <article>
+                        <header class="mb-2">
+                            <a class="facts-title" href="/comingsoon">Anxiety</a>
+                        </header>
+                        <p class="facts-text"> Often we feel worried and dejected. But when does this take over our lives? Anxiety disorders are the most common form of emotional disorder and can affect anyone. </p>
+                        <a class="readmore" href="/comingsoon">Read
+                            more...</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="blogs">
+                <img class="blog-img" src="{{url_for('Facts.static',filename='./images/depression.jpg')}}" />
+                <div class="card-body">
+                    <article>
+                        <header class="mb-2">
+                            <a class="facts-title" href="/comingsoon">Depression</a>
+                        </header>
+                        <p class="facts-text">Is it just normal sadness? Or are you really depressed? Depression is not just lack of willpower and energy. It is a disease which needs to be treated correctly.
+                        </p>
+                        <a class="readmore" href="/comingsoon">Read
+                            more...</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4">
+            <div class="blogs">
+                <img class="blog-img" src="https://www.sciencealert.com/images/2018-07/processed/126-dizzy-vertigo-sound_1024.jpg" />
+                <div class="card-body">
+                    <article>
+                        <header class="mb-2">
+                            <a class="facts-title" href="/comingsoon">Panic
+                                Attacks</a>
+                        </header>
+                        <p class="facts-text">Panic attacks, due to their life-ending feeling and sudden appearance, are quite feared. But with effective treatment and guidance, these can be cured too.
+                        </p>
+                        <a class="readmore" href="/comingsoon">Read
+                            more...</a>
+                    </article>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="blogs">
+                <img class="blog-img" src="{{url_for('Facts.static',filename='./images/stress.jpg')}}" />
+                <div class="card-body">
+                    <article>
+                        <header class="mb-2">
+                            <a class="facts-title" href="/comingsoon">Stress</a>
+                        </header>
+                        <p class="facts-text">Stress is normal and inevitable. But when does this become a threat to our health and future?
+                        </p>
+                        <a class="readmore" href="/comingsoon">Read
+                            more...</a>
+                    </article>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="blogs">
+                <img class="blog-img" src="{{url_for('Facts.static',filename='./images/insomnia.jpg')}}" />
+                <div class="card-body">
+                    <article>
+                        <header class="mb-2">
+                            <a class="facts-title" href="/comingsoon">Insomania</a>
+                        </header>
+                        <p class="facts-text">“Insomnia is just a glamorous word for thoughts you forgot to have in the day.”
+                            <br> ~Alain De Botton
+                        </p>
+                        <a class="readmore" href="/comingsoon">Read more...</a>
+                    </article>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="blogs">
+                <img class="blog-img" src="https://www.redmountainsedona.com/img/search/articles/Residential-group-home-treatment-sadteen-7.jpg" />
+                <div class="card-body">
+                    <article>
+                        <header class="mb-2">
+                            <a class="facts-title" href="/comingsoon">Overthinking</a>
+                        </header>
+                        <p class="facts-text"> “Overthinking is the art of creating new problems out of ones that never existed.” <br>~ Anonymous </p>
+                        <a class="readmore" href="/comingsoon">Read
+                            more...</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

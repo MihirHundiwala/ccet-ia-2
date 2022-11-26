@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{{url_for('static',filename='images/logo-ico.png')}}" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/bootstrap.min.css') }}">
+
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="{{url_for('static',filename='./css/fontawesome.min.css')}}" />
+    <script src="https://kit.fontawesome.com/555f71f953.js" crossorigin="anonymous"></script>
+
+    <!-- Navbar - footer css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='./css/navbar-footer.css')}}"> {% block styling %} {% endblock %}
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+
+    <!---------------------------------------- Navbar ---------------------------------------->
+    <nav class="navbar navbar-expand-md fixed-top">
+
+        <button class="navbar-toggler" onclick="navbar_color()" data-target="#collapse_target" data-toggle="collapse" type="button">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <a class="navbar-brand mr-auto" href="/"><img src="{{url_for('static',filename='images/Logo.png')}}" id="logo"></a>
+
+        <ul class="navbar-nav navbar-right" id="logins">
+
+            {% if session['logged_in'] %}
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="notifications" role="button" data-toggle="dropdown"><i class="fas fa-bell"></i></a>
+
+                <div class="dropdown-menu dropdown-menu-right" id="dropdown-notifications">
+
+                    <div class="notification-heading">
+                        <h3>Notifications</h3>
+
+                        {% if session['notifications'] %}
+                        <p id="notification-count">{{ session['notifications']|length }}</p>
+                    </div>
+                    {% for notificationid, notification in session['notifications'].items() %}
+
+                    <div class="dropdown-item notification">
+                        <div class="row align-items-center notification-row">
+                            <div class="col-3 envelope-col"><img src="{{url_for('static',filename='images/envelope-icon.png')}}" alt=""></div>
+                            <div class="col-9 notificationtext-col">
+                                <p onclick="gotonotifications()">{{notification['Title']}}</p>
+                                <p class="notification-time">{{notification['Post-Time']}}</p>
+                                <i class="fas fa-times notification-cross-icon" id="{{notificationid}}" onclick="deletenotification(this)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} {% else %}
+                </div>
+                <div>
+                    <h3 class="nonotifications">No Notifications</h3>
+                </div>
+                {% endif %}
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="nickname" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{session['nickname']}}</a>
+                <div class="dropdown-menu dropdown-menu-right" id="dropdown-signout">
+                    <a class="yourprofile_btn dropdown-item" href="/{{session['user_type']}}/profile">My Profile</a>
+                    <a class="logout_btn dropdown-item" href="{{url_for('logout')}}">Sign Out</a>
+                </div>
+            </li>
+
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link signin_btn" data-toggle="modal" data-target="#signinmodal" type="button">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link signup_btn" data-toggle="modal" data-target="#signupmodal"><span>Sign Up</a>
+            </li>
+
+            {% endif %}
+        </ul>
+
+        <div class="collapse navbar-collapse" id="collapse_target">
+            <ul class="navbar-nav mr-auto" id="nav_contents">
+                <li class="nav-item">
+                    <a class="nav-link" href="/stories">Stories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/appointments">Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/facts">Facts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutus">About Us</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!---------------------------------------- Sign In Modal ---------------------------------------->
+    <div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <form class="modal-content" method="POST" action="/auth">
+
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title w-100">Sign In</h5>
+
+                    <div class="redirect-other-div">
+                        <p>New to T-Space? <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#signupmodal">Sign Up</a></p>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <label for="email"><b>Email</b></label>
+                    <input class="modalinputs" id="emailforsignin" type="text" placeholder="Enter Email" name="email" required>
+                    <label for="psw"><b>Password</b></label>
+                    <input class="modalinputs" type="password" placeholder="Enter Password" name="psw" required> {% with messages = get_flashed_messages(category_filter=["signin"]) %} {% if messages %} {% for message in messages %}
+                    <div class='auth-error'>{{ message }}</div>
+                    {% endfor %} {% endif %} {% endwith %}
+                    <div class="forgot-password"><span onclick="forgotpassword()">Forgot password?</span></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" name="signin" class="btn modal-submit">Sign In</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <!---------------------------------------- Sign Up Modal ---------------------------------------->
+    <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <form class="modal-content" method="POST" action="/auth">
+
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title w-100">Sign Up</h5>
+
+                    <div class="redirect-other-div">
+                        <p>Already have an account?<a type="button" data-dismiss="modal" data-toggle="modal" data-target="#signinmodal">Sign In</a></p>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <label for="email"><b>Email</b></label>
+                    <input class="modalinputs" type="text" placeholder="Enter Email" name="email" required>
+                    <label for="psw"><b>Password</b></label>
+                    <input class="modalinputs" type="password" minlength="6" placeholder="Enter Password" name="psw" required> {% with messages = get_flashed_messages(category_filter=["signup"]) %} {% if messages %} {% for message in messages %}
+                    <div class='auth-error'>{{ message }}</div>
+                    {% endfor %} {% endif %} {% endwith %}
+
+                    <div class="redirect-other-div">
+                        <p>Are you a therapist?<a type="button" data-dismiss="modal" data-toggle="modal" data-target="#therapistsignupmodal">Join Us</a> </p>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" name="signup" class="btn modal-submit">Sign Up</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!----------------------------------------Therapist Sign Up Modal ---------------------------------------->
+    <div class="modal fade" id="therapistsignupmodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <form class="modal-content" method="POST" action="/auth">
+
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h5 class="modal-title w-100">Join Us</h5>
+
+                    <div class="redirect-other-div">
+                        <p>Already have an account?<a type="button" data-dismiss="modal" data-toggle="modal" data-target="#signinmodal">Sign In</a></p>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+
+                    <label for="psw"><b>Full Name</b></label>
+                    <input class="modalinputs" type="text" placeholder="Enter Name" name="tname" required>
+                    <label for="email"><b>Email</b></label>
+                    <input class="modalinputs" type="text" placeholder="Enter Email" name="email" required>
+
+                    <label for="mob"><b>Mobile No.</b></label>
+                    <input class="modalinputs" type="tel" placeholder="Enter Mobile Number" name="mob" pattern="[0-9]{10}" required>{% with messages = get_flashed_messages(category_filter=["therapistsignup"]) %} {% if messages %} {% for message in messages
+                    %}
+                    <div class='auth-error'>{{ message }}</div>
+                    {% endfor %} {% endif %} {% endwith %}
+                </div>
+
+                <div class="modal-footer" id="tsignupfooter">
+                    <button type="submit" name="therapistsignup" class="btn modal-submit">Join Us</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    {% block content %} {% endblock %}
+
+    <!---------------------------------------- Message modal ------------------------------------------>
+    <div class="modal fade" id="messagemodal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="pop_up">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" style="right: 25px; top: 20px; font-size: 35px;" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="margin: 10px 0 20px;">
+                    <pre id="message" style="text-align:center; margin: 0"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------------------- Site-footer ---------------------------------------->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-lg-6 info">
+                    <h6>About</h6>
+                    <p class="text-justify">T-Space is a safe house for teens and students to share their story and seek professional help, if required. We are a platform for students to connect with a therapist and are not responsible in case of any personal harm caused to
+                        the user.</p>
+                </div>
+                <div class="col-12 col-sm-5 col-md-4 col-lg-2 col-xl-3 quicklinks">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="/#about-us">About Us</a></li>
+                        <li><a href="/terms">Terms and Conditions</a></li>
+                        <li><a href="/terms#privacy">Privacy policy</a></li>
+                        <li><a href="/terms#refund">Refund Policy</a></li>
+                        <li><a href="https://forms.gle/cTif6AQfsfjwN8h19">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 contact">
+                    <h6>Contact Us</h6>
+                    <ul class="footer-links">
+                        <li><a href="mailto:team.tspace@gmail.com"><i class="fas fa-envelope"></i>team.tspace@gmail.com</a></li>
+                        <li><a class="address" href="https://goo.gl/maps/UmpV9GXQK9icL7Uf8" target="_blank"><i class="fas fa-map-marker-alt"></i> Tilak Nagar, Dombivli (E), <br><span></span>Mumbai, India</a></li>
+                        <li><a><i class="fas fa-phone-alt"></i>+91 9768957668</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright-container">
+            <hr>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 copyright">
+                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by T-Space</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="/comingsoon"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="email" href="mailto:team.tspace@gmail.com"><i class="fas fa-envelope"></i></a></li>
+                        <li><a class="instagram" href="https://www.instagram.com/tspace.in/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/company/t-spacein" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static',filename='./js/bootstrap.bundle.min.js')}}"></script>
+
+    {% block plugins %} {% endblock %}
+
+    <script src="{{url_for('static',filename='./js/layout.js')}}"></script>
+    <script>
+        let session_logged_in = '{{session["logged_in"]}}'
+
+        if ('{{redirected}}' == 'True') {
+            $('{{showmodal}}').modal('show');
+        }
+
+        $(document).ready(() => {
+            if ('{{msg}}') {
+                if ('{{time}}') {
+                    showmodal('{{msg}}', {{time}})
+                } else {
+                    showmodal('{{msg}}')
+                }
+            }
+        })
+
+        function gotonotifications() {
+            window.location = "/{{session['user_type']}}/profile?tab=notifications-tab"
+        }
+    </script>
+
+</body>
+
+</html>

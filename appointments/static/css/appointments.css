@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+.navbar {
+    background-color: #ffffff00;
+}
+
+.navbar.scrolled {
+    background-image: linear-gradient(315deg, #f9d29d 0%, #fdc1ac 74%) !important;
+}
+
+#nav_contents>li>a {
+    font-size: 19px;
+    margin-top: 5px;
+}
+
+body {
+    font-family: "Nunito", serif;
+}
+
+.banner-div {
+    height: fit-content;
+    background-color: black;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0.5;
+}
+
+.banner-heading {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    text-align: center;
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+.banner-heading h2 {
+    margin: 0;
+    color: #ffffff;
+}
+
+.banner-heading br {
+    display: none;
+}
+
+.table-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 0 30px;
+}
+
+.pricing-table thead th {
+    border-bottom: none;
+}
+
+.outer-container {
+    width: 85vw;
+    padding: 30px;
+    border: #efefef solid 1px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 5px 0px rgb(220 220 220 / 60%);
+}
+
+.container-row {
+    margin: 0;
+}
+
+.booknow-column {
+    font-size: 18px;
+    padding: 10px;
+}
+
+#thirty-min,
+#sixty-min {
+    padding: 30px 15px 0;
+}
+
+.booknow-h4 {
+    font-size: 28px;
+    color: rgb(50, 50, 50);
+}
+
+.booknow-column label {
+    margin-top: 15px;
+    margin-bottom: .2rem;
+    letter-spacing: -0.1px;
+}
+
+.booknow-column form {
+    width: 60%;
+}
+
+#nav-tab .nav-link {
+    color: #404040;
+}
+
+#nav-tab .nav-item.show .nav-link,
+#nav-tab .nav-link.active,
+#nav-tab .nav-link:hover {
+    color: #e57373;
+}
+
+.clock-icons {
+    height: 35px;
+}
+
+.form-control {
+    border-radius: 5px !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-control[readonly] {
+    background-color: white;
+}
+
+.date-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #a99ea1;
+}
+
+.time-icon {
+    float: right;
+    margin-top: -28px;
+    margin-right: 12px;
+    color: #a89c9f;
+}
+
+.submit-buttons {
+    margin-top: 35px;
+}
+
+.submit-buttons button {
+    margin-right: 20px;
+}
+
+.submit-buttons .btn:focus,
+.submit-buttons .btn:active {
+    box-shadow: none !important;
+}
+
+.reset-btn {
+    color: #404040;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 8px;
+    border: none;
+}
+
+.booknow-submit {
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    font-size: 15px;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+.booknow-submit:hover {
+    text-decoration: none;
+    color: #404040 !important;
+    background-color: white;
+    font-weight: 700 !important;
+    letter-spacing: 2px;
+    background: none;
+    box-shadow: 0px 6px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+
+/*-------------------- Upcoming Meetings --------------------*/
+
+.upcoming-column {
+    background-image: url("../images/Upcoming.jpeg");
+    background-size: cover;
+    background-repeat: round;
+    position: relative;
+    padding: 30px;
+    border-radius: 10px;
+    font-family: 'Open Sans';
+    box-shadow: 4px 4px 10px 0px rgb(220 220 221);
+}
+
+.upcoming-title {
+    text-align: center;
+    margin-top: 35px;
+    letter-spacing: 0.01px;
+    font-size: 22px;
+}
+
+.upcoming-hr {
+    height: 2px;
+    background-color: #f1d3b9;
+    border: none;
+}
+
+.meetbox {
+    overflow-y: auto;
+    letter-spacing: 0.01px;
+    line-height: 23px;
+    font-size: 15px;
+    padding: 0 5px;
+    height: 300px;
+}
+
+.meetbox::-webkit-scrollbar {
+    width: 8px;
+}
+
+.meetbox::-webkit-scrollbar-thumb {
+    background: #f1d3b9;
+    border-radius: 10px;
+}
+
+.meetbox::-webkit-scrollbar-thumb:hover {
+    background: #fdc1ac;
+}
+
+.meetings {
+    background: #ffffff50;
+    padding: 10px;
+    border: #f1d3b9 solid;
+    border-width: thin;
+    border-radius: 5px;
+    color: rgb(50, 50, 50);
+    margin-bottom: 10px;
+}
+
+.meetings:hover {
+    box-shadow: 0 0 7px #f1d3b9;
+    cursor: pointer;
+}
+
+.meettype {
+    color: #f44336;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.reschedule-meet,
+.joinmeet {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #f1d3b9;
+    color: #fdac65;
+    margin-top: 10px;
+    padding: 2.5px 8px 2.5px 8px;
+}
+
+.joinmeet:hover,
+.reschedule-meet:hover {
+    text-decoration: none;
+    color: #fdac65;
+    box-shadow: 0 0 7px #f1d3b9;
+}
+
+#videoicon,
+#reschedule-icon {
+    margin-left: 6px;
+    color: #f1d3b9;
+}
+
+.bottom-note {
+    font-size: 15px;
+    padding: 5px;
+}
+
+.bottom-note span {
+    text-decoration: underline;
+    color: #f44336;
+    font-weight: 600;
+}
+
+.bottom-note p {
+    margin: 0;
+    margin-top: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bec3c7;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fdc1ac;
+}
+
+.site-footer {
+    background-color: #f9d29d;
+    background-image: linear-gradient(315deg, #f9d29d 0%, #fdc1ac 74%);
+}
+
+.site-footer .social-icons a {
+    color: #ffb584;
+}
+
+#no-meeting-span {
+    text-align: center;
+}
+
+@media (min-width:1199px) {
+    .outer-container {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 991px) {
+    .outer-container {
+        width: 90vw;
+        padding: 20px;
+    }
+    .booknow-column {
+        padding: 10px 20px;
+    }
+    .booknow-column {
+        font-size: 16px;
+    }
+    .booknow-h4 {
+        font-size: 24px;
+    }
+    .booknow-column form {
+        width: 80%;
+    }
+    .reset-btn {
+        font-size: 15px;
+    }
+    .booknow-submit {
+        font-size: 14px;
+    }
+    .submit-buttons {
+        margin-top: 25px;
+    }
+    .submit-buttons button {
+        margin-right: 10px;
+    }
+    .meetbox {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    .upcoming-title {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+    .bottom-note {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .booknow-column form {
+        width: 70%;
+    }
+    .booknow-h4 {
+        font-size: 24px;
+    }
+    .upcoming-column {
+        margin-top: 40px;
+        padding: 40px;
+    }
+    .upcoming-title {
+        font-size: 24px;
+    }
+    .meetings {
+        font-size: 18px;
+        line-height: 25px;
+        padding: 15px;
+    }
+    .bottom-note {
+        font-size: 18px;
+        padding: 10px;
+    }
+}
+
+@media (max-width:576px) {
+    .banner-heading br {
+        display: block;
+    }
+    .signin_btn,
+    #nickname {
+        font-weight: 400;
+    }
+    .booknow-column {
+        padding: 10px 10px;
+    }
+    .booknow-column {
+        font-size: 17px;
+    }
+    .booknow-h4 {
+        font-size: 22px;
+    }
+    .booknow-column form {
+        width: 100%;
+    }
+    .upcoming-column {
+        padding: 30px;
+        margin-top: 60px;
+    }
+    .upcoming-title {
+        font-size: 21px;
+        margin-bottom: -5px;
+    }
+    .meetings {
+        font-size: 14px;
+        line-height: 21px;
+        padding: 10px;
+    }
+    .bottom-note {
+        font-size: 14px;
+        padding: 5px;
+    }
+    .priceitems span {
+        display: none;
+    }
+    .priceitems {
+        padding: .75rem .5rem !important;
+        text-align: center;
+    }
+}

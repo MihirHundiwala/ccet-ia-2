@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block styling %}
+<link rel="stylesheet" href="{{url_for('static',filename='./css/404.css')}}"> 
+{% endblock %}
+{% block content %}
+  <div id="div-404">
+    <h1>Page Not Found</h1>
+    <p>What you were looking for is just not there.</p>
+    <p><a href="\">Go to Home Page</a></p>
+  </div>
+{% endblock %}

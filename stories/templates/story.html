@@ -1,0 +1,125 @@
+{% extends 'layout.html' %} {% block styling %}
+<link rel="stylesheet" href="{{url_for('Stories.static',filename='./css/story.css')}}"> {% endblock %}
+
+<title>{% block title %} {{storydata['Title']}} {% endblock %}</title>
+
+{% block content %}
+
+<div class="stories-container container">
+
+    <h1 class="heading">Online Teen Health Community</h1>
+    <h4 class="sub-heading">Taking Our Health in Our Hands</h4>
+
+    <div class="story-main">
+        <div class="row">
+            <div class="col-md-9">
+
+                <div class="row align-items-center">
+                    <img class="user-image" src="{{url_for('static',filename='./images/user-photo.png')}}" alt="">
+
+                    <p id="author-name">{{storydata['Nickname']}}</p>
+                    <div id="post-date">
+                        <p>{{storydata['Post-Time'][0:12]}}</p>
+                    </div>
+                </div>
+
+                <div id="story">
+                    <h3 class="story-title">{{storydata['Title']}}</h3>
+                    <br>
+                    <textarea readonly class="textarea-format">{{storydata['Body']}}</textarea>
+
+                    <div class="likes-comments">
+                        <button id="{{sid}}" class="btn btn-outline btn-like" onclick="likestory(this)">
+                            {% if 'liked' in storydata.keys() %}
+                            <i class="fa fa-heart liked"></i>
+                            {% else %}
+                            <i class="fa fa-heart-o"></i>
+                            {% endif %}
+                            <span>{{storydata['Likes']}}</span>
+                        </button>
+                        <button class="btn btn-outline btn-comment">
+                            <i class="fa fa-comment-o"></i>
+                            <span>{{storydata['Comment-count']}}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="comment-section">
+                    <h5 style="margin-bottom: 20px;">Comments</h5>
+
+                    <div class="add-comment">
+                        <form method="POST" action="">
+                            <div class="row">
+                                <div class="col-1"><img id="btn-plus" src="/stories.stories/./images/Plus%20Icon.png" alt=""></div>
+                                <div class="col-11"><textarea class="textarea-format" name="commentbody" type="text" placeholder="Type your comment here" id="input-cmt" required></textarea></div>
+                                <div class="col-12 comment-options">
+                                    <input class="btn btn-light" type="reset" id="reset-comment" value="Clear">
+                                    <input class="btn btn-dark" type="submit" id="submit-comment" value="Post">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    {% if comments == None %}
+                    <div style="margin: 0 0 10px 30px;">Be the first to Comment!</div>
+                </div>
+                {% else %} {% for commentid,commentdata in comments.items() %}
+                <div class="comment row">
+                    <div class="user-img-div-cmt col-1">
+                        <img class="user-image-comments" src="{{url_for('static',filename='./images/user-photo.png')}}" alt="">
+                    </div>
+                    <div class="comment-text col-11">
+                        <h4 class="comment-nickname">{{commentdata['Nickname']}}</h4>
+                        <p>{{commentdata['Comment-Body']}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class='d-flex justify-content-center'>
+                <button class='loadmore' id='{{sid}}' onclick='load_more_comments(this)'>Load more <span></button>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-3 sidebar-col">
+            <div id="comment-btn1-div">
+                <button class="btn btn-dark" id="comment-btn1" onclick="window.location='#input-cmt'">Comment</button>
+            </div>
+
+            <div id="similar-post-div">
+                <h5>Recent Posts</h5>
+                <br>
+                <div id="similar-posts">
+                    <p>Post 1</p>
+                    <p>Post 2</p>
+                    <p>Post 3</p>
+                    <p>Post 4</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div onclick="topFunction()" id="backtoTop" title="Go to top"><i class="fas fa-chevron-up"></i></div> {% endblock %} {% block plugins %}
+
+<script>
+    document.querySelector('.fixed-top').classList.remove('fixed-top');
+
+    $('.comment-options').hide();
+
+    $('#input-cmt').on('keyup', function() {
+        if (this.value.length) {
+            $('.comment-options').show();
+        } else {
+            $('.comment-options').hide();
+        }
+    });
+</script>
+
+
+
+<script src="{{url_for('Stories.static', filename='js/story.js')}}"></script>
+
+{% endblock %}

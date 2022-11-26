@@ -1,0 +1,228 @@
+{% extends 'layout.html' %} {% block styling %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='./css/profile.css')}}">
+<link rel="stylesheet" href="{{url_for('User.static',filename='./css/user-profile.css')}}">
+
+<title>{% block title %} Your Profile {% endblock %}</title>
+
+{% endblock %} {% block content %}
+<div class="main-container">
+    <div class="row">
+
+        <div class="col-12 col-md-3 side-bar">
+            <div class="side-bar-overlay"></div>
+            <div class="nav nav-pills tab-menu" role="tablist" aria-orientation="vertical">
+                <a class="nav-link text-nowrap tab-item active" data-toggle="pill" href="#account-settings" role="tab" aria-controls="account-settings-pill" aria-selected="true">
+                    Account Settings
+                </a>
+
+                <a class="nav-link text-nowrap tab-item" id="notifications-tab" data-toggle="pill" href="#notification-settings" role="tab" aria-controls="notification-settings-pill" aria-selected="false">
+                    Notifications
+                </a>
+
+                <a class="nav-link text-nowrap tab-item" data-toggle="pill" href="#appointments" role="tab" aria-controls="appointments-pill" aria-selected="false">
+                    Appointments
+                </a>
+
+                <a class="nav-link text-nowrap tab-item" data-toggle="pill" href="#your-stories" role="tab" aria-controls="your-stories-pill" aria-selected="false">
+                    Stories
+                </a>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9 tab-content">
+
+            <div class="tab-pane fade show active" id="account-settings" role="tabpanel">
+
+                <div class="tab-heading">
+                    <h4 class="">Account Settings</h4>
+                    <p>Your basic information</p>
+                </div>
+
+                <div class="user-info-display" style="font-family: 'Open Sans';">
+                    <div class="row justify-content-between align-items-center profile-pic-row">
+                        <div class="col-12 col-lg-8">
+                            <div class="row align-items-center m-0">
+                                <div class="profile-img-div">
+                                    {% if 'Avatar' in data.keys() %}
+                                    <img id="output" class="profilpic" src="{{data['Avatar']}}" alt="err"> {% else %}
+                                    <img id="output" class="profilpic" src="{{url_for('static',filename='./images/user-photo.png')}}" alt="err"> {% endif %}
+                                </div>
+                                <div class="file-upload-text">
+                                    {% if 'Avatar' in data.keys() %}
+                                    <h4 class="form-title">Change profile photo</h4>
+                                    {% else %}
+                                    <h4 class="form-title">Upload a new photo</h4>
+                                    {% endif %}
+                                    <input type="file" accept="image/*" id="image_file" onchange="loadFile(event)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4" style="text-align: right;">
+                            <button id="update_btn" class="btn btn-dark" onclick="upload_avatar()" disabled>Update</button> {% if 'Avatar' in data.keys() %}
+                            <button id="remove_btn" class="btn btn-dark" onclick="remove_avatar()">Remove</button> {% else %}
+                            <button id="remove_btn" class="btn btn-dark" onclick="remove_avatar()" disabled>Remove</button> {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-info-display">
+
+                    <div class="form-div">
+                        <div class="form-heading">
+                            <h4 class="form-title">Edit user information</h4>
+                            <p style="transform: rotateY(180deg);">&#x270E;</p>
+                        </div>
+
+                        <form method='POST' style="font-family: 'Open Sans';">
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="firstname">First Name: </label>
+                                        <input type="text" class="form-control" value="{{data['Firstname']}}" id="firstname" name="firstname" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name: </label>
+                                        <input type="text" class="form-control" value="{{data['Lastname']}}" id="lastname" name="lastname" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="username">Nickname:</label>
+                                        <input type="text" class="form-control" value="{{data['Nickname']}}" id="username" name="nickname" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="gender">Gender: </label>
+                                        <select class="form-control" id="gender" name="gender" required>
+                                            <option class="gender-option" value="Male">Male</option>
+                                            <option class="gender-option" value="Female">Female</option>
+                                            <option class="gender-option" value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="dob">Date of Birth: </label>
+                                        <input type="date" value="{{data['Date of Birth']}}" class="form-control" id="dob" name="dob" min="1900-01-01" max="2100-12-31" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="Mobile">Mobile Number: </label>
+                                        <input type="tel" class="form-control" value="{{data['Contact']}}" id="Mobile" name="mobile" pattern="[0-9]{10}" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="edit-submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="notification-settings" role="tabpanel">
+                <div class="tab-heading">
+                    <h4 class="">Notification Settings</h4>
+                    <p>Manage notifications you receive</p>
+                </div>
+
+                <div class="user-info-display">
+
+                    <h3 class="profile-subheading">Recent Notifications</h3>
+
+                    {% if session['notifications'] %} {% for notificationid, notification in session['notifications'].items() %}
+
+                    <div class="profile-items">
+                        <div class="row align-items-center profile-item-row">
+                            <div class="col-2 col-md-1 profile-icon-col"><img src="{{url_for('static',filename='images/envelope-icon.png')}}" alt=""></div>
+                            <div class="col-10 col-md-11 profile-text-col">
+                                <p>{{notification['Message']}}</p>
+                                <p class="profile-text-time">{{notification['Post-Time']}}</p>
+                                <i class="fas fa-trash-alt p-notification-delete-icon" id="{{notificationid}}" onclick="deletenotification(this)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} {% else %}
+
+                    <h3 class="empty-area-text">No Notifications!</h3>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="appointments" role="tabpanel">
+
+                <div class="tab-heading">
+                    <h4 class="">Appointments</h4>
+                    <p>List of therapy sessions</p>
+                </div>
+
+                <div class="user-info-display">
+
+                    <h3 class="profile-subheading">Upcoming Sessions</h3>
+                    <div class="profile-items" id='meetings-div'>
+                    </div>
+
+                    <br><br>
+
+                    <h3 class="profile-subheading">Past Sessions</h3>
+                    <div class="profile-items" id='past-meetings-div'>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="your-stories" role="tabpanel">
+
+                <div class="tab-heading">
+                    <h4 class="">Stories</h4>
+                    <p>List of your stories</p>
+                </div>
+
+                <div class="user-info-display">
+                    <h3 class="profile-subheading">Your Stories</h3>
+                    {% if stories|length != 0 %} {% for storyid,storytitle in stories.items() %}
+                    <div class="profile-items">
+                        <div class="row align-items-center profile-item-row">
+                            <div class="col-2 col-md-1 profile-icon-col"><img src="{{url_for('static',filename='images/story-icon.png')}}" style="border-radius: 50%;"></div>
+                            <div class="col-10 col-md-11 profile-text-col">
+                                <a class="profile-story-a" href="{{url_for('Stories.story',sid=storyid)}}">
+                                    <p>{{storytitle}}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} {% else %}
+                    <h3 class="empty-area-text">No Stories Posted!</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block plugins %}
+<script type="text/javascript">
+    let gender = "{{data['Gender'] | safe}}";
+    let url = new URL(window.location.href);
+    let clickelement = url.searchParams.get("tab");
+    if(clickelement){
+        $('#'+clickelement).click()
+    }
+</script>
+
+<script src="{{url_for('static',filename='./js/profile.js')}}"></script>
+<script src="{{url_for('User.static',filename='./js/user-profile.js')}}"></script>
+{% endblock %}

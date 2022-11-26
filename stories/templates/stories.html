@@ -1,0 +1,82 @@
+{% extends 'layout.html' %} {% block styling %}
+<link rel="stylesheet" href="{{url_for('Stories.static',filename='./css/stories.css')}}"> {% endblock %}
+
+<title>{% block title %} Stories {% endblock %}</title>
+
+{% block content %}
+
+<div class="stories-container container">
+
+    <h1 class="heading">Online Teen Health Community</h1>
+    <h4 class="sub-heading">Taking Our Health in Our Hands</h4>
+
+    <div class="stories">
+
+        <div class="addstory-container">
+            <button class="btn addstory-btn" onclick='if(check_login_status()){$("#addyourstorydiv").toggle(300,"swing")}' type="button" aria-expanded="false">
+                <span style="margin-right: 3px;">Add new story! </span><i class="fas fa-user-plus"></i>
+            </button>
+
+            <div class="collapse" id="addyourstorydiv">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <textarea id="storytitle" class="form-control" name="storytitle" rows="1" placeholder="Add title to your story" required></textarea>
+                        <textarea id="storybody" class="form-control" name="storybody" rows="8" placeholder="Type your story here.." required></textarea>
+                    </div>
+
+                    <div class="publish-btn-div">
+                        <button type="reset" class="btn btn-outline-danger">Clear</button>
+                        <div><button type="submit" value="submit" class="publish-btn">Post</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if stories != None %} {% for storyid,data in stories.items() %}
+        <div class="row story-row" id="{{storyid}}">
+            <div class="col-sm-2 user-img-div">
+                <img class="user-image" src="{{url_for('static',filename='./images/user-photo.png')}}" alt="">
+            </div>
+            <div class="col-sm-10 story-text">
+                <img class="user-image-mobile" src="{{url_for('static',filename='./images/user-photo.png')}}" alt="">
+                <a class="story-title" href="{{url_for('Stories.story',sid=storyid)}}">{{data['Title']}}</a>
+                <p>{{data['Body']}}</p>
+                <div class="likes-comments">
+                    <button id="{{storyid}}" class="btn btn-outline btn-like" onclick="likestory(this)">
+                        {% if 'liked' in data.keys() %}
+                        <i class="fa fa-heart liked"></i>
+                        {% else %}
+                        <i class="fa fa-heart-o"></i>
+                        {% endif %}
+                        <span>{{data['Likes']}}</span>
+                    </button>
+                    <a class="btn btn-outline btn-comment" href="{{url_for('Stories.story',sid=storyid)}}">
+                        <i class="fa fa-comment-o"></i>
+                        <span>
+                            {{ data['Comment-count'] }}
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr> {% endfor %} {% else %}
+
+        <h3 style="padding: 15px 15px 25px; text-align: center; font-family: 'Open Sans';">No Stories</h3>
+
+        {% endif %}
+
+    </div>
+    <div class='d-flex justify-content-center loadmore-div'>
+        <button class='loadmore' onclick='load_more_stories()'>Load more <span></button>
+    </div>
+</div>
+
+<div onclick="topFunction()" id="backtoTop" title="Go to top"><i class="fas fa-chevron-up"></i></div> {% endblock %} {% block plugins %}
+
+<script>
+    document.querySelector('.fixed-top').classList.remove('fixed-top')
+</script>
+
+<script src="{{url_for('Stories.static', filename='js/stories.js')}}"></script>
+
+{% endblock %}

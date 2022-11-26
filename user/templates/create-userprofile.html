@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/createprofile.css') }}">
+
+    <title>Create Profile</title>
+</head>
+
+<body onload="disableSubmit()">
+
+    {% if msg %} 
+    <div class="alert alert-success">
+        <strong>{{msg}}</strong>
+    </div>
+    {% else %}
+    {% endif %}
+
+    <div class="container">
+
+        <header>
+            <h1>Join us</h1>
+            <p>Complete your profile to get started..
+                <br>
+                <br> Although we ask for some personal details, your identity will be completely hidden from other users.
+                <br> Only your nickname will be visible to therapists as well as other teens.
+            </p>
+        </header>
+
+        <form action="/{{session['user_type']}}/createprofile" method="POST">
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="firstname">First Name: </label>
+                        <input type="text" class="form-control" placeholder="" id="firstname" name="firstname" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="lastname">Last Name: </label>
+                        <input type="text" class="form-control" placeholder="" id="lastname" name="lastname" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="username">Nickname:</label>
+                        <input type="text" class="form-control" placeholder="You will be addressed by this name"
+                            id="username" name="nickname" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="gender">Gender: </label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="" selected disabled hidden>Select one</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth: </label>
+                        <input type="date" class="form-control" id="dob" name="dob" min="1900-01-01" max="2100-12-31" required>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="Mobile">Mobile Number: </label>
+                        <input type="tel" class="form-control" id="Mobile" placeholder="Your 10 digit mobile number" name="mobile" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+            </div>
+            <input type="checkbox" name="terms" id="terms" onchange="toggleButton(this)"> I Agree to <a href="/terms" target="_blank">Terms & Conditions</a>
+            <br><br>
+            <div>
+                <input type="reset" class="btn btn-outline-dark" value="Reset">
+                <input type="submit" class="btn btn-outline-success" id="submit" value="Submit">
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static',filename='./js/bootstrap.bundle.min.js')}}"></script>
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+
+        function disableSubmit() {
+            document.getElementById("submit").disabled = true;
+        }
+
+        function toggleButton(element) {
+            if (element.checked) {
+                document.getElementById("submit").disabled = false;
+            }
+            else {
+                document.getElementById("submit").disabled = true;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+body {
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+}
+
+.header-div {
+    display: flex;
+    align-items: center;
+}
+
+.header-div img {
+    height: 55px;
+    padding: 10px;
+}
+
+.header-div h2 {
+    margin-top: 10px;
+    font-size: 30px;
+    font-family: 'Satisfy', cursive;
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.message {
+    font-size: 35px;
+    margin-bottom: 45px;
+}
+
+.backtohome {
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 15px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    letter-spacing: 1px;
+}
+
+.backtohome:hover {
+    color: #404040 !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.3s ease 0s;
+}

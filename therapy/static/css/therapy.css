@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&family=Style+Script&display=swap');
+.main {
+    height: 100vh;
+    padding: 10px !important;
+}
+
+#video-row {
+    height: 100%;
+    --bs-gutter-x: 0;
+}
+
+.video-container {
+    height: 100%;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#remotecon {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: black;
+    z-index: 1;
+}
+
+#remoteVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotateY(180deg);
+}
+
+#localcon {
+    position: absolute;
+    width: 17%;
+    height: 18%;
+    bottom: 0;
+    right: 0;
+    background: slategrey;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 3;
+}
+
+#localVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotateY(180deg);
+}
+
+#buttons-div {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen-btn {
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 5;
+    background: none;
+}
+
+.mic-video-btns,
+.hangup-btn {
+    width: 37px;
+    height: 37px;
+    outline: none;
+    border: none;
+    margin: 0 9px;
+    background: rgba(255, 255, 255);
+    border-radius: 50%;
+    position: relative;
+}
+
+.hangup-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 35%;
+    background: #DB0D0D;
+}
+
+#micicon,
+#videoicon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#micicon {
+    font-size: 1.2em;
+    transform: translate(-49%, -51%);
+}
+
+#videoicon {
+    transform: translate(-48%, -48%);
+}
+
+#fullscreenicon {
+    font-size: 25px;
+    color: white;
+}
+
+#hangupicon {
+    color: white;
+    font-size: 2.2em;
+}
+
+#remotestatus,
+#localstatus {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* --------- Chat-Box --------- */
+
+.chatbox-container {
+    height: 100%;
+    padding-left: 10px !important;
+}
+
+.chatbox {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 0px 4px 2px rgb(220 220 220 / 60%);
+}
+
+.chat-header {
+    background-color: #f9c5d1;
+    background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
+    height: 100px;
+    border-radius: 10px;
+    border-bottom-left-radius: 40%;
+    border-bottom-right-radius: 40%;
+}
+
+.chat-header h2 {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    margin-top: 25px;
+    font-family: 'Style Script', cursive;
+}
+
+.chat-messages {
+    min-height: 50%;
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.messages {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.remotemsg,
+.localmsg {
+    display: block;
+    padding: 5px 8px;
+    width: fit-content;
+    min-width: 35%;
+    margin: 5px;
+    max-width: 75%;
+    border-radius: 3px;
+    overflow-wrap: break-word;
+    box-shadow: 2px 2px 4px 0px rgb(220 220 220 / 60%);
+}
+
+.remotemsg {
+    background: #e1bee770;
+    align-self: flex-start;
+}
+
+.localmsg {
+    background: rgb(249 249 249);
+    align-self: flex-end;
+}
+
+.sendername {
+    font-size: 16px;
+    float: left;
+    font-weight: 600;
+    color: #f06292;
+    letter-spacing: 0.;
+}
+
+.sendtime {
+    margin-left: 15px;
+    font-size: 13px;
+    float: right;
+}
+
+.msgbody {
+    font-size: 14px;
+    margin: 0;
+    margin-top: 5px;
+}
+
+.typemessage-div {
+    padding: 10px;
+    position: relative;
+}
+
+#typemsg {
+    justify-self: flex-end;
+    align-self: center;
+    outline: none;
+    border: none;
+    box-shadow: inset 0px 0px 3px 0px #00000060;
+    border-radius: 10px;
+    width: 100%;
+    padding: 6px 45px 6px 15px;
+    resize: none;
+    margin-bottom: -5px;
+}
+
+#sendicon {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    font-size: 1.4em;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #7a77f3;
+}
+
+@media only screen and (max-width: 991px) {
+    /*For medium devices*/
+    #video-row {
+        min-height: 450px;
+    }
+    .chatbox-container {
+        padding: 30px 0px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #video-row {
+        min-height: 450px;
+    }
+    .chatbox-container {
+        padding: 30px 0px;
+    }
+    #localcon {
+        min-width: 100px;
+    }
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background-color: #f8bbd0;
+    border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+    background-color: #ac9fe9;
+    border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar {
+    width: 7px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}

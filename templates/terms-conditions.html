@@ -1,0 +1,87 @@
+{% extends 'layout.html' %} {% block styling %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='./css/terms-conditions.css')}}"> {% endblock %}
+
+<title>{% block title %} T-Space {% endblock %}</title>
+
+{% block content %}
+
+<section id="terms">
+    <div class="container">
+        <h2>Terms and Conditions:</h2>
+        <ul>
+            <li>T-Space therapy sessions are meant for school and college students falling in the age group 13 &#x2011; 24.</li>
+            <li>Every other individual not lying in the age group specified above shall not be eligible to book a therapy session. Although, they will be eligible to use other parts of our website.</li>
+            <li>If you are a minor (age below 18), we assume you have parental consent to seek professional help.</li>
+            <li>If at any point we feel that you don’t fall in the eligible age group we may terminate your account.</li>
+            <li>Use of offensive or foul language anywhere on our platform is prohibited and will be monitored strictly.</li>
+            <br>
+            <li id="rescheduling-terms">Appointments Rescheduling
+                <br>
+                <ul>
+                    <li>Therapy session once booked, cannot be cancelled.</li>
+                    <li>In case of any emergency, users can reschedule a meeting. But rescheduling will be allowed only once.</li>
+                    <li>The session can be rescheduled until 3 hours prior to the meeting time, thereafter no more rescheduling will be allowed.</li>
+                    <li>Therapist holds the choice to change your appointment time and slot if they feel like. In such cases, you will be informed in advance. The session will be rescheduled at a convenient time to both you and your therapist.</li>
+                    <li>In case of technical difficulties during or at the time of the session, our team will look into it. If the case is adjudged to be genuine, the appointment shall be rescheduled.</li>
+                </ul>
+            </li>
+            <br>
+            <li>We reserve the right to change the charges for Services, at any time, without any prior notice to the User. Any such change shall be applicable and effective on the User.</li>
+            <li>T-Space is just a platform for providing access to Experts (counsellor, therapist or other mental health professional). All your life’s decisions are yours to make and we shall not be responsible for your actions or any harm caused.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="privacy">
+    <div class="container">
+        <h2>Privacy policy:</h2>
+        <ul>
+            <li>Even though we collect your personal details while signing up, your identity will be completely hidden from other users.</li>
+            <li>The collected data is important for us to verify your authenticity. We respect your privacy and none of your information will be shared to anyone.</li>
+            <li>You will only be known by your nickname throughout our platform. You would have a choice to reveal your identity to the therapist.</li>
+            <li>You’re solely responsible for any personal information that you share publicly on the website.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="refund">
+    <div class="container">
+        <h2>Refund policy:</h2>
+        <ul>
+            <li>If you have successfully booked a session, NO REFUND SHALL BE GRANTED but you will be eligible for rescheduling (only once).
+                <p>For rescheduling related terms, <a href="#rescheduling-terms">click here</a></p>
+            </li>
+            <li>If you are unhappy with the services, no partial or full refund will be given in this scenario.</li>
+            <li>For Therapy Sessions, in case, the customer fails to turn up at the time of the session, no refunds shall be granted by T-Space.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="disclaimer">
+    <div class="container">
+        <h2>Disclaimer:</h2>
+        <ul>
+            <li>T-Space is a safe house for teens and students to share their stories and experiences and seek professional help, if required. We are just a platform for connecting you with an expert for guidance and are not responsible for your actions.</li>
+            <li>We don’t provide any emergency services. In case of any medical emergencies, please go to the nearest hospital or health care provider.</li>
+            <li>T-Space is not a suicide prevention helpline. If you are feeling suicidal, immediately contact suicide prevention helpline.</li>
+            <li>You are solely responsible for any and every information that you post publicly on the website.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="note">
+    <div class="container">
+        <h4>Note:</h4>
+        <ul>
+            <li>All terms and conditions as well as policies are subject to future change without any prior notice.</li>
+            <li>If you are found violating any of the platform’s policies or terms and conditions, strict action will be taken which may result in temporary or permanent termination of your account.</li>
+        </ul>
+    </div>
+</section>
+
+<script>
+    document.querySelector('.fixed-top').classList.remove('fixed-top')
+</script>
+
+{% endblock %}

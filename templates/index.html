@@ -1,0 +1,237 @@
+{% extends 'layout.html' %} {% block styling %}
+
+<link rel="stylesheet" href="{{url_for('static',filename='./css/home-page.css')}}"> {% endblock %}
+
+<title>{% block title %} T-Space {% endblock %}</title>
+
+{% block content %} {% if msg == None %} {% else %}
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{msg}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div id="welcome">
+    <div class="row welcome-area-row align-items-center justify-content-center">
+        <div class="col-12 col-sm-9 col-md-8 col-lg-7 text-col slide-in from-left">
+            <h2>Welcome to <span>T-Space</span></h2>
+            <p class="tagline">~ A Safehouse for teens and students</p>
+            <p class="welcome-text">How many times have you wondered <br class="hidden-brs"> if your problems were real? <br> How many times you have been wanting to <br class="hidden-brs"> ask for help but couldn't? <br> Don't worry, we've got your back... </p>
+            <a id="" class="main-button know-more" href="#about-us">Find Out More</a>
+        </div>
+        <div class="col-12 col-md-5 image-col slide-in from-right">
+            <img src="{{url_for('static',filename='./images/Logo.png')}}" alt="">
+        </div>
+    </div>
+</div>
+
+<!---------------------------------------- About Us ---------------------------------------->
+
+<section class="section" id="about-us">
+    <div class="about-div container">
+        <h2>About Us</h2>
+
+        <p>Mental health is a rising issue in our society. In India, only 7.3% of its 365 million youth report such problems. And yet, we keep pretending this is not happening in our own homes, schools and colleges. Public stigma associated with mental health
+            problems particularly affects help-seeking among young people. T-Space is an initiative which aims at encouraging and promoting mental health and psychological well-being.
+            <a href="/aboutus">Know us better</a> </p>
+    </div>
+
+</section>
+
+
+<!---------------------------------------- Image Box ---------------------------------------->
+<div class="image-box">
+    <div class="row">
+        <div class="col-7 img-cols">
+            <div class="img-divs">
+                <a href="/">
+                    <div class="image-text">
+                        <p>T-Space: Space for TEENS</p>
+                    </div>
+                    <img src="{{url_for('static',filename='./images/img1.jpg')}}" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="col-5 img-cols">
+            <div class="img-divs">
+                <a href="/facts">
+                    <div class="image-text">
+                        <p>All about Mental <br class="hidden-brs"> Health Issues</p>
+                    </div>
+                    <img src="{{url_for('static',filename='./images/img2.png')}}" style="width: 105%;" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 img-cols">
+            <div class="img-divs">
+                <a href="/appointments">
+                    <div class="image-text">
+                        <p>Book a session with <br class="hidden-brs"> Top Therapists</p>
+                    </div>
+                    <img src="{{url_for('static',filename='./images/img3.jpg')}}" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="col-6 img-cols">
+            <div class="img-divs">
+                <a href="/stories">
+                    <div class="image-text">
+                        <p>Share you struggles <br class="hidden-brs"> and help others!</p>
+                    </div>
+                    <img src="{{url_for('static',filename='./images/img4.jpg')}}" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------- Stories ---------------------------------------->
+<section class="section" id="stories">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12 align-self-center slide-in from-left">
+                <img src="{{url_for('static',filename='./images/stories.jpg')}}" class="img-fluid d-block mx-auto">
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 align-self-center section-cols">
+                <h5>Share your Stories!</h5>
+
+                <p>
+                    We all have a story to tell, even if it is tainted by scars. They are nothing to hide away from, these journeys should be shared and celebrated instead.
+                </p>
+                <p> We have a place where you can share your struggles, problems, thoughts, journeys, learnings and much more: "Stories". As the name suggests, it is a platform for you to share your story and help others gain motivation and inspiration from
+                    you. Sharing your coping methods and solutions can help a lot many people out there who might be suffering from the same symptoms as you were. </p>
+
+                <p> "Stories" is not just a platform for survivors, it is a platform to vent out your feelings and emotions: sad or happy.
+                    <br>Each story needs to be heard...
+                </p>
+
+                <br class="hidden-brs">
+                <a class="main-button" href="/stories">Share Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!---------------------------------------- Facts ---------------------------------------->
+<section class="section" id="facts">
+    <div class="container">
+        <div class="row flex-column-reverse flex-lg-row">
+            <div class="col-lg-5 col-md-12 col-sm-12 align-self-center section-cols">
+                <h5>Facts</h5>
+
+                <p>
+                    Many people feel worried and dejected every now and then, but when does it take over their whole lives? Losing a loved one, doing poorly in school or work, being bullied and other hardships might lead a person to feel lonely, scared, or anxious. Some
+                    people experience this on an everyday basis, sometimes even for no reason at all.
+
+                </p>
+
+                <p>Everyone has Some questions regarding such sensitive topics. 'Facts' has filtered and authenticated information regarding some common mental health issue. This information, mainly focused on teens and students, can help you and/or your
+                    loved ones.</p>
+
+                <br class="hidden-brs">
+                <a class="main-button" href="/facts">Discover More</a>
+            </div>
+
+            <div class="col-lg-7 col-md-12 col-sm-12 align-self-center slide-in from-right">
+                <img src="{{url_for('static',filename='./images/facts.jpg')}}" class="img-fluid d-block mx-auto">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!---------------------------------------- Book Now ---------------------------------------->
+<section class="section" id="therapy">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 col-sm-12 align-self-center slide-in from-left">
+                <img src="{{url_for('static',filename='./images/therapy.jpg')}}" class="img-fluid d-block mx-auto" alt="App">
+            </div>
+            <div class="right-text col-lg-5 col-md-12 col-sm-12 align-self-center section-cols">
+                <div class="left-heading">
+                    <h5>Connect with the Best Online Psychologist and Counsellor...</h5>
+                </div>
+                <div class="left-text">
+                    <p>Ready to seek the help of a mental health professional and you aren't sure how to get started? Many of us consider free online counselling and therapy as an option. <br>Looking for pocket friendly Online Counselling and Therapy?</p>
+                    <br class="hidden-brs">
+                    <a class="main-button" href="/appointments">Book Now</a>
+                    <a class="main-button" style="margin-left: 15px;" data-toggle="modal" data-target="#pricingmodal" type="button">Pricing</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="pricingmodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <h5 class="modal-title w-100">Pricing</h5>
+                <div class="redirect-other-div">
+                    <p>Like we said... Affordable!</p>
+                </div>
+            </div>
+
+            <div class="modal-body" style="margin-top: 10px;">
+                <table class="table pricing-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" class="priceitems">Audio Session</th>
+                            <th scope="col" class="priceitems">Video Session</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="priceitems">30 Min<span>ute</span>s</th>
+                            <td class="priceitems ">₹ 149</td>
+                            <td class="priceitems ">₹ 249</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="priceitems">60 Min<span>ute</span>s</th>
+                            <td class="priceitems ">₹ 249</td>
+                            <td class="priceitems ">₹ 399</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %} {% block plugins %}
+
+<!-- Plugins -->
+<script src="{{url_for('static',filename='js/home-page.js')}}"></script>
+<script src="{{url_for('static',filename='js/fader.js')}}"></script>
+
+{% endblock %}

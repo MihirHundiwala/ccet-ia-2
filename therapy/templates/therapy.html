@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <link rel="icon" href="{{url_for('static',filename='images/logo-ico.png')}}" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('Therapy.static',filename='./css/therapy.css')}}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <script type="text/javascript" src="{{url_for('Therapy.static',filename='./js/socket.io.js')}}"></script>
+    <script src="https://kit.fontawesome.com/b363a0111f.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script>
+        const roomid = '{{roomid}}'
+        const id = '{{session["user_id"]}}'
+        const nickname = '{{session["nickname"]}}'
+    </script>
+    <title>VideoCall</title>
+</head>
+
+<body>
+    <div class="container-fluid main">
+        <div class="row" id="video-row">
+
+            <div class="col-12 col-lg-9 video-container">
+
+                <div id="remotecon">
+                    <div id="remotestatus">Currently, no User is connected</div>
+                    <video id="remoteVideo" autoplay playsinline></video>
+                </div>
+
+                <button class='fullscreen-btn' onclick="fullscreentoggle()">
+                    <i id="fullscreenicon" class="fas fa-expand"></i>
+                </button>
+
+                <div id="buttons-div">
+                    <button class='mic-video-btns' id='mic' onclick="mictoggle()">
+                        <i id="micicon" class="fas fa-microphone"></i>
+                    </button>
+                    <button class='hangup-btn' id='hangup-btn' onclick="hangup()">
+                        <span id='hangupicon' class="iconify" data-icon="mdi:phone-hangup" data-inline="false"></span>
+                    </button>
+                    <button class='mic-video-btns' id='video' onclick="videotoggle()">
+                        <i id="videoicon" class="fas fa-video"></i>
+                    </button>
+                </div>
+
+                <div id="localcon">
+                    <div id="localstatus"><small>Camera is Off</small></div>
+                    <video id="localVideo" autoplay playsinline muted></video>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-3 chatbox-container">
+                <div class="chatbox">
+                    <div class="chat-header">
+                        <h2 class="header-title">Chat with your therapist</h2>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="messages">
+
+                        </div>
+                    </div>
+                    <div class="typemessage-div">
+                        <textarea id="typemsg" placeholder="Chat" rows="1"></textarea>
+                        <span id="sendicon" class="iconify" data-icon="fluent:send-24-filled" data-inline="false" onclick="sendMessage()"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        $('#typemsg').each(function() {
+            this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+        }).on('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        $("#typemsg").keypress(function(event) {
+            if (event.keyCode == 13 && !event.shiftKey) {
+                sendMessage(); //Submit your form here
+                return false;
+            }
+        });
+    </script>
+
+    <script type="text/javascript" src="{{url_for('Therapy.static',filename='./js/therapy.js')}}"></script>
+
+</body>
+
+</html>

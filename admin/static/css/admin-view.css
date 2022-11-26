@@ -1,0 +1,80 @@
+body {
+    background-color: pink;
+}
+
+body .container-fluid {
+    margin-top: 100px;
+}
+
+#cmts-aprov {
+    padding-left: 30px;
+    width: 400px;
+}
+
+.str-info {
+    padding: 20px;
+}
+
+.cmt-info {
+    padding: 10px;
+}
+
+body ul {
+    padding-left: 0px;
+}
+
+.accept {
+    height: fit-content;
+    width: fit-content;
+    margin-bottom: 10px;
+    float: right;
+}
+
+.reject {
+    height: fit-content;
+    width: fit-content;
+    float: right;
+}
+
+.accept:hover {
+    background-color: rgb(219, 217, 217);
+}
+
+.accept:focus,
+.accept:active {
+    box-shadow: none;
+}
+
+#cmts-aprov ul li {
+    margin-bottom: 7px;
+}
+
+.accept-s {
+    height: fit-content;
+    width: fit-content;
+    margin-right: 10px;
+    float: left;
+}
+
+.reject-s {
+    height: fit-content;
+    width: fit-content;
+    float: left;
+}
+
+.accept-s:hover {
+    background-color: rgb(219, 217, 217);
+}
+
+.accept-s:focus,
+.accept-s:active {
+    box-shadow: none;
+}
+
+#str-apprv ul li {
+    margin-bottom: 7px;
+}
+
+.site-footer {
+    display: none;
+}

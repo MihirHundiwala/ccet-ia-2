@@ -1,0 +1,344 @@
+{% extends 'layout.html' %} {% block styling %}
+
+<!-- Date-Time-picker -->
+<link rel="stylesheet" href="{{url_for('static',filename='./css/timepicker.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='./css/jquery-ui.css')}}">
+
+<!-- Custom css -->
+<link rel="stylesheet" href="{{url_for('Appointments.static',filename='./css/appointments.css')}}"> {% endblock %}
+
+<title>{% block title %} Appointments {% endblock %}</title>
+
+{% block content %}
+
+<div class="banner-div">
+    <img class="banner-img" src="{{url_for('Appointments.static',filename='./images/Booknow Background.jpg')}}" alt="">
+    <div class="banner-heading">
+        <h2>Book your <br> Therapy Session!</h2>
+    </div>
+</div>
+
+<div class="table-container">
+    <div style="text-align: center;">
+        <h5 class="modal-title w-100">Pricing</h5>
+        <div class="redirect-other-div">
+            <p>Like we said... Affordable!</p>
+        </div>
+    </div>
+
+    <table class="table pricing-table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" class="priceitems">Audio Session</th>
+                <th scope="col" class="priceitems">Video Session</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row" class="priceitems">30 Min<span>ute</span>s</th>
+                <td class="priceitems ">₹ 149</td>
+                <td class="priceitems ">₹ 249</td>
+            </tr>
+            <tr>
+                <th scope="row" class="priceitems">60 Min<span>ute</span>s</th>
+                <td class="priceitems ">₹ 249</td>
+                <td class="priceitems ">₹ 399</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container-fluid outer-container">
+    <div class="row container-row justify-content-between">
+
+        <div class="col-12 col-md-7 col-xl-6 booknow-column">
+
+            {% if session['user_type'] == 'user' %}
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="thirty-min-tab" data-toggle="tab" href="#thirty-min"
+                        role="tab" aria-controls="thirty-min" aria-selected="true">
+                        <img class="clock-icons"
+                            src="{{url_for('Appointments.static',filename='./images/clock 30.png')}}" alt=""> 30 Min</a>
+                    <a class="nav-item nav-link" id="sixty-min-tab" data-toggle="tab" href="#sixty-min" role="tab"
+                        aria-controls="sixty-min" aria-selected="false">
+                        <img class="clock-icons"
+                            src="{{url_for('Appointments.static',filename='./images/clock 60.png')}}" alt=""> 60 Min</a>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="thirty-min" role="tabpanel" aria-labelledby="thirty-min-tab">
+                    <h3 class="booknow-h4">30 minutes Therapy Session!</h3>
+
+                    <form method="POST" class="booknow-form30" id="thirty-form" autocomplete="off"
+                        onreset="reset_form(30)">
+
+                        <div>
+                            <label for="">Select Type:</label>
+                            <div>
+                                <select class="form-control 30" name='calltype'>
+                                    <option value="" selected disabled hidden>Select one</option>
+                                    <option value="Audio">Audio</option>
+                                    <option value="Video">Video</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="">Select Therapist:</label>
+                            <div>
+                                <select class="form-control 30" id="therapist30" name="therapist30"
+                                    onchange="getAvailableDays30(this)">
+                                    <option value="" selected disabled hidden>Choose here</option>
+                                    {% for tid,nickname in therapists.items() %}
+                                    <option value="{{tid}}">{{nickname}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="time">Date:</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" id="datepicker30" name="date30" class="form-control 30 datepicker"
+                                    onchange="getAvailableSlots30(this)" required readonly>
+                                <i class="fas fa-calendar-alt date-icon"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="time">Time:</label>
+                            <div>
+                                <input type="text" id="timepicker30" name="time30" class="form-control 30 timepicker"
+                                    required>
+                                <i class="fas fa-stopwatch time-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="submit-buttons">
+                            <button type="reset" class="btn btn-outline-light reset-btn">Reset</button>
+                            <button type="button" class="booknow-submit" id="submitBtn30" data-toggle="modal" data-target="#confirm-submit-30">Book Now</button>
+                        </div>
+
+                        <div class="modal fade" id="confirm-submit-30" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        Agree and Proceed
+                                    </div>
+                                    <div class="modal-body">
+                                        If you proceed, we assume that you comply to the following terms:
+                                        <ol>
+                                            <li>T-Space therapy sessions are meant for school and college students falling in the age group 13-24.
+                                            </li>
+                                            <li>If you are a minor (age below 18), we assume you have parental consent.
+                                            </li>
+                                        </ol>
+                                        Are you sure you want proceed?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type='submit' name="thirty" class="btn btn-danger success">Proceed</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="sixty-min" role="tabpanel" aria-labelledby="sixty-min-tab">
+                    <h3 class="booknow-h4">60 minutes Therapy Session!</h3>
+
+                    <form method="POST" class="booknow-form60" id="sixty-form" autocomplete="off"
+                        onreset="reset_form(60)">
+
+                        <div>
+                            <label for="">Select Type:</label>
+                            <div>
+                                <select class="form-control 60" name='calltype'>
+                                    <option value="" disabled selected hidden>Select one</option>
+                                    <option value="Audio">Audio</option>
+                                    <option value="Video">Video</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="">Select Therapist:</label>
+                            <div>
+                                <select class="form-control 60" id="therapist60" name="therapist60" placeholder=""
+                                    onchange="getAvailableDays60(this)">
+                                    <option value="" selected disabled hidden>Choose here</option>
+                                    {% for tid,nickname in therapists.items() %}
+                                    <option value="{{tid}}">{{nickname}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="time">Date:</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" id="datepicker60" name="date60" class="form-control 60 datepicker"
+                                    onchange="getAvailableSlots60(this)" required readonly>
+                                <i class="fas fa-calendar-alt date-icon"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="time">Time:</label>
+                            <div>
+                                <input type="text" id="timepicker60" name="time60" class="form-control 60 timepicker"
+                                    required>
+                                <i class="fas fa-stopwatch time-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="submit-buttons">
+                            <button type="reset" class="btn btn-outline-light reset-btn">Reset</button>
+                            <button type="button" class="booknow-submit" id="submitBtn60" data-toggle="modal" data-target="#confirm-submit-60">Book Now</button>
+                        </div>
+
+                        <div class="modal fade" id="confirm-submit-60" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        Agree and Proceed
+                                    </div>
+                                    <div class="modal-body">
+                                        If you proceed, we assume that you comply to the following terms:
+                                        <ol>
+                                            <li>T-Space therapy sessions are meant for school and college students
+                                                falling in the age group 13-24.
+                                            </li>
+                                            <li>If you are a minor (age below 18), we assume you have parental consent.
+                                            </li>
+                                        </ol>
+                                        Are you sure you want proceed?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type='submit' name="sixty" class="btn btn-danger success">Proceed</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {% else %} {% endif %}
+
+        </div>
+
+        <div class="col-12 col-md-5 col-xl-4 upcoming-column">
+            <h2 class="h4 upcoming-title">Upcoming Meetings</h2>
+            <hr class="upcoming-hr">
+
+            <div class="meetbox">
+                <ul class="list-unstyled">
+                    {% if meetings==None %}
+                    <p id="no-meeting-span">No Upcoming Meetings</p>
+                    {% else %} {% for meetid,meet in meetings %}
+                    <li>
+                        <div class="meetings">
+                            <div class="meettype">{{meet['SessionTime']}} Minutes {{meet['Type']}} Session</div>
+                            {% if session['user_type'] == 'user' %}
+                            <div class="meetperson">Scheduled with {{meet['TherapistName']}}</div>
+                            {% else %}
+                            <div class="meetperson">Scheduled with {{meet['UserNickname']}}</div>
+                            {% endif %}
+                            <div class="meetingdetails">Date: {{meet['Date']}}</div>
+                            <div class="meetingdetails">Time: {{meet['Time']}}</div>
+                            {% if meet['JB_enabled'] %}
+                            <a class="joinmeet" href='/therapy?therapyid={{meet["RoomID"]}}'>Join
+                                <i id="videoicon" class="fas fa-video"></i></a> {% else %} {% endif %}
+                            {% if meet['RS_enabled'] %}
+                            <a class="reschedule-meet" data-toggle="modal" data-target="#reschedule-modal" onclick="reschedule('{{meet['TherapistID']}}','{{meetid}}','{{meet['Date']}}')">Reschedule<i id="reschedule-icon" class="fas fa-calendar-alt"></i></a> {% else %} {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %} {% endif %}
+                </ul>
+            </div>
+            <div class="bottom-note"><span>Note: </span>
+                <p>Join Button will appear 15 minutes before scheduled time.</p>
+            </div>
+
+            <div class="modal fade" id="reschedule-modal" tabindex="-1" role="dialog"
+                aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="\rescheduleappointment" method="POST" class='reschedule-form'>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Reschedule Your Appointment
+                            </div>
+
+                            <div class="modal-body">
+                                <input type="hidden" name="tidRS" id="tidRS" value="" hidden>
+                                <input type="hidden" name="midRS" id="midRS" value="" hidden>
+                                <div>
+                                    <label for="time">Date:</label>
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" id="datepickerRS" style='z-index:2000;' name="dateRS" class="form-control RS datepicker" onchange="getAvailableSlotsRS(this)" required readonly>
+                                        <i class="fas fa-calendar-alt date-icon"></i>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="time">Time:</label>
+                                    <div>
+                                        <input type="text" id="timepickerRS" style='z-index:2000;' name="timeRS" class="form-control RS timepicker" required>
+                                        <i class="fas fa-stopwatch time-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">Cancel</button>
+                                <button type='submit' class="btn btn-danger success">Reschedule</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container" style="height: 120px; padding-top: 15px;">
+
+    <p>Please note: Meeting once booked cannot be cancelled but can be rescheduled only once. <span></span><a href='\terms#refund'>Refund policy</a></p>
+
+</div>
+
+{% endblock %} {% block plugins %}
+
+<script>
+    let minDate_from_server = "{{minDate}}"
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+<script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/timepicker.min.js')}}"></script>
+<script src="{{url_for('Appointments.static', filename='js/appointments.js')}}"></script>
+<script type="text/javascript">
+    if ("{{msgs}}") {
+        alert("{{msgs}}")
+    }
+
+</script>
+
+{% endblock %}
