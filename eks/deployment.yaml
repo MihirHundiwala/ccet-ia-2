@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         name: t-space
-          image: 186911657558.dkr.ecr.ap-south-1.amazonaws.com/ccet-ia-2:latest
-          imagePullPolicy: Always
-          ports:
-            containerPort: 5000
+        image: 186911657558.dkr.ecr.ap-south-1.amazonaws.com/ccet-ia-2:latest
+        imagePullPolicy: Always
+        ports:
+          containerPort: 5000
