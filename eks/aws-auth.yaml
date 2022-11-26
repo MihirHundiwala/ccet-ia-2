@@ -18,4 +18,4 @@ data:
     - rolearn: arn:aws:iam::186911657558:role/AWSEKSNodeRole
       username: AWSEKSNodeRole
       groups:
-      - system:masters
+        - system:masters
