@@ -44,5 +44,7 @@ jobs:
 
       - name: Deploy image to Amazon EKS
         run: |
-          kubectl get svc
-
+          kubectl -f apply aws-auth.yaml
+          kubectl -f apply deployment.yaml
+          kubectl -f apply service.yaml
+s
