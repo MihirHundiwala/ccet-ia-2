@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: t-space-deployment
+  labels:
+    app: t-space
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: t-space
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: t-space
+    spec:
+      containers:
+       —name: t-space
+          image: 186911657558.dkr.ecr.ap-south-1.amazonaws.com/ccet-ia-2:latest
+          imagePullPolicy: Always
+          ports:
+           —containerPort: 5000

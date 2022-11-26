@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: t-space-service
+spec:
+  selector:
+    app: t-space
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
