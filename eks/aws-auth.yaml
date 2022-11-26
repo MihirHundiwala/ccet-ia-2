@@ -8,8 +8,8 @@ data:
     - userarn: arn:aws:iam::186911657558:user/github-actions
       username: github-actions
       groups:
-        - system: masters
+        - system:masters
   mapRoles: |
     - rolearn: arn:aws:iam::186911657558:role/AWSEKSClusterRole
       username: AWSEKSFullAccess
-      - system: masters
+      - system:masters
