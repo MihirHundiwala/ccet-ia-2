@@ -17,7 +17,7 @@ sys.dont_write_bytecode = True
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
-sslify = SSLify(app)
+# sslify = SSLify(app)
 
 app.register_blueprint(User, url_prefix='/user')
 app.register_blueprint(Therapist, url_prefix='/therapist')
@@ -262,9 +262,4 @@ def page_not_found(e):
 if __name__ == '__main__':
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-    if(os.environ.get('PORT')):
-        port = os.environ.get('PORT')
-    else:
-        port = 5000
-    socketio.run(app, port=int(port), host='0.0.0.0')
-    # socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0')
