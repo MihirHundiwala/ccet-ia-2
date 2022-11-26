@@ -266,5 +266,5 @@ if __name__ == '__main__':
         port = os.environ.get('PORT')
     else:
         port = 5000
-    # socketio.run(app, port=int(port), host='0.0.0.0')
-    socketio.run(app, debug=True)
+    socketio.run(app, port=int(port), host='0.0.0.0')
+    # socketio.run(app, debug=True)
