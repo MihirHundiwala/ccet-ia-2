@@ -47,4 +47,3 @@ jobs:
           kubectl -f apply aws-auth.yaml
           kubectl -f apply deployment.yaml
           kubectl -f apply service.yaml
-s
