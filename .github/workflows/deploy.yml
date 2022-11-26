@@ -40,7 +40,7 @@ jobs:
           docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
 
       - name: Update kube config
-        run: aws eks update-kubeconfig --name ccet-ia-2 --region ap-south-1
+        run: aws eks update-kubeconfig --name ccet-ia-2 --region ap-south-1 --role-arn arn:aws:iam::186911657558:user/github-actions
 
       - name: Deploy image to Amazon EKS
         run: |
